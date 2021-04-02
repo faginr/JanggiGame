@@ -175,9 +175,10 @@ def main():
                      input_clicks = []  # clear click log
                 #was this the second click?
                 if len(input_clicks) == 2:  # second click
-                     print(input_clicks[0]+input_clicks[1])
-                     print(game_state.make_move(str(input_clicks[0]), str(input_clicks[1])))
-                     game_state.print_board()
+                     # print(input_clicks[0]+input_clicks[1])
+                     # print(game_state.make_move(str(input_clicks[0]), str(input_clicks[1])))
+                     game_state.make_move(input_clicks[0], input_clicks[1])
+                     # game_state.print_board()
                      active_square = ()
                      input_clicks = []
 
@@ -204,12 +205,12 @@ def drawGame(screen, game_state, row, col):
     text_2 = font.render(turn, True, turn)
     screen.blit(text, (30,30))
     screen.blit(text_2, (90,30))
-
-    font_2 = pygame.font.SysFont(None, 32)
-    text_3 = font_2.render(str(row), True, "black")
-    text_4 = font_2.render(str(col), True, "black")
-    screen.blit(text_3, (200, 30))
-    screen.blit(text_4, (300, 30))
+    #
+    # font_2 = pygame.font.SysFont(None, 32)
+    # text_3 = font_2.render(str(row), True, "black")
+    # text_4 = font_2.render(str(col), True, "black")
+    # screen.blit(text_3, (200, 30))
+    # screen.blit(text_4, (300, 30))
 
 
 
