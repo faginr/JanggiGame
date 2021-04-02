@@ -164,9 +164,9 @@ class JanggiGameState():
 
     def set_game_state(self, team):
         '''sets the win state to a given team as a winner'''
-        if team == 'red':
+        if team == 'r':
             self._win_state = 'RED_WON'
-        if team == 'blue':
+        if team == 'b':
             self._win_state = 'BLUE_WON'
 
     def save_temp_state(self, temp_move_from, temp_move_to):
@@ -188,10 +188,10 @@ class JanggiGameState():
     def set_turn(self):
         '''sets turn to opposite team color'''
 
-        if self._turn == 'red':
-            self._turn = 'blue'
+        if self._turn == 'r':
+            self._turn = 'b'
         else:
-            self._turn = 'red'
+            self._turn = 'r'
 
     def get_piece(self, row, col):
         '''returns piece occupying row/col'''
@@ -290,10 +290,10 @@ class JanggiGameState():
 
         # Find all possible moves for other teams pieces
         # build list of all possible moves for opposing team
-        if team == 'blue':
-            opposing_team = 'red'
+        if team == 'b':
+            opposing_team = 'r'
         else:
-            opposing_team = 'blue'
+            opposing_team = 'b'
         board = self.get_board()
         for row in range(1,11,1):
             for col in range(0,9,1):
@@ -550,10 +550,10 @@ class JanggiGameState():
         # test for check
         # Set current team and opposing team
         current_team = current_turn
-        if current_team == 'blue':
-            opposing_team = 'red'
+        if current_team == 'b':
+            opposing_team = 'r'
         else:
-            opposing_team = 'blue'
+            opposing_team = 'b'
 
         # did current player put themselves in check?
         if self.is_in_check(current_team):

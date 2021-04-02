@@ -50,13 +50,14 @@ User input, visual output
 def main():
     '''main pygame loop'''
     pygame.init()
+    game_state = Janggi_Engine.JanggiGameState()
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     clock = pygame.time.Clock()
     load_assets()  # only load once
 
     # drawBoard(screen)
 
-    game_state = Janggi_Engine.JanggiGameState()
+
     # board = game_state.get_board()
 
     game_executing = True
@@ -64,6 +65,8 @@ def main():
     input_clicks = [] #keep track of ticks
     row = -1
     col = -1
+    board_row = -1
+    board_col = -1
     x_offset = 75
     y_offset = 75
     row_translation = {
@@ -101,71 +104,92 @@ def main():
 
 
                 if row > row_translation[1][0] and row < row_translation[1][1]:
+                    board_row = '1'
                     row = 1
                 elif row > row_translation[2][0] and row < row_translation[2][1]:
+                    board_row = '2'
                     row = 2
                 elif row > row_translation[3][0] and row < row_translation[3][1]:
+                    board_row = '3'
                     row = 3
                 elif row > row_translation[4][0] and row < row_translation[4][1]:
+                    board_row = '4'
                     row = 4
                 elif row > row_translation[5][0] and row < row_translation[5][1]:
+                    board_row = '5'
                     row = 5
                 elif row > row_translation[6][0] and row < row_translation[6][1]:
+                    board_row = '6'
                     row = 6
                 elif row > row_translation[7][0] and row < row_translation[7][1]:
+                    board_row = '7'
                     row = 7
                 elif row > row_translation[8][0] and row < row_translation[8][1]:
+                    board_row = '8'
                     row = 8
                 elif row > row_translation[9][0] and row < row_translation[9][1]:
+                    board_row = '9'
                     row = 9
                 elif row > row_translation[10][0] and row < row_translation[10][1]:
+                    board_row = '10'
                     row = 10
 
                 if col > col_translation[1][0] and col < col_translation[1][1]:
+                    board_col = 'a'
                     col = 1
                 elif col > col_translation[2][0] and col < col_translation[2][1]:
+                    board_col = 'b'
                     col = 2
                 elif col > col_translation[3][0] and col < col_translation[3][1]:
+                    board_col = 'c'
                     col = 3
                 elif col > col_translation[4][0] and col < col_translation[4][1]:
+                    board_col = 'd'
                     col = 4
                 elif col > col_translation[5][0] and col < col_translation[5][1]:
+                    board_col = 'e'
                     col = 5
                 elif col > col_translation[6][0] and col < col_translation[6][1]:
+                    board_col = 'f'
                     col = 6
                 elif col > col_translation[7][0] and col < col_translation[7][1]:
+                    board_col = 'g'
                     col = 7
                 elif col > col_translation[8][0] and col < col_translation[8][1]:
+                    board_col = 'h'
                     col = 8
                 elif col > col_translation[9][0] and col < col_translation[9][1]:
+                    board_col = 'i'
                     col = 9
 
-                if active_square == (row, col): #user clicked same square twice
+                if active_square == (board_col+board_row): #user clicked same square twice
                 #     #pass your turn
                      game_state.make_move(input_clicks[0], input_clicks[0])
                      active_square = () #deselect
                      input_clicks = [] #clear click log
                 elif row > 0 and row < 11 and col > 0 and col < 10:
-                     active_square = (row, col)
+                     active_square = (board_col+board_row)
                      input_clicks.append(active_square) #append both first and second clicks
                 else:
                      active_square = ()  # deselect
                      input_clicks = []  # clear click log
                 #was this the second click?
                 if len(input_clicks) == 2:  # second click
-                     game_state.make_move(input_clicks[0], input_clicks[1])
+                     print(input_clicks[0]+input_clicks[1])
+                     print(game_state.make_move(str(input_clicks[0]), str(input_clicks[1])))
+                     game_state.print_board()
                      active_square = ()
                      input_clicks = []
 
 
         drawGame(screen, game_state, row, col)
+        # game_state.print_board()
         clock.tick(MAX_FPS)
         pygame.display.flip()
 
 
 def drawGame(screen, game_state, row, col):
     '''draw board and pieces'''
-    game_state = Janggi_Engine.JanggiGameState()
     drawBoard(screen)
     drawPieces(screen, game_state)
 
@@ -266,51 +290,7 @@ def drawPieces(screen, game_state):
 
 
 
-
 if  __name__ == '__main__':
     main()
 
 
-
-# row_translation = {
-#         "1_lower": 75,
-#         "1_upper": 125,
-#         "2_lower": 150,
-#         "2_upper": 175,
-#         "3_lower": 225,
-#         "3_upper": 250,
-#         "4_lower": 275,
-#         "4_upper": 325,
-#         "5_lower": 350,
-#         "5_upper": 400,
-#         "6_lower": 425,
-#         "6_upper": 475,
-#         "7_lower": 500,
-#         "7_upper": 550,
-#         "8_lower": 600,
-#         "8_upper": 650,
-#         "9_lower": 675,
-#         "9_upper": 725,
-#         "10_lower": 750,
-#         "10_upper": 800,
-#     }
-#     col_translation = {
-#         "1_lower": 75,
-#         "1_upper": 125,
-#         "2_lower": 150,
-#         "2_upper": 175,
-#         "3_lower": 225,
-#         "3_upper": 250,
-#         "4_lower": 275,
-#         "4_upper": 325,
-#         "5_lower": 350,
-#         "5_upper": 400,
-#         "6_lower": 425,
-#         "6_upper": 475,
-#         "7_lower": 500,
-#         "7_upper": 550,
-#         "8_lower": 600,
-#         "8_upper": 650,
-#         "9_lower": 675,
-#         "9_upper": 725
-#     }

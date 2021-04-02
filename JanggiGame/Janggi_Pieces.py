@@ -76,7 +76,7 @@ class Soldier(Piece):
         possible_destinations = []
 
         # Team Red moves
-        if team == 'red':
+        if team == 'r':
 
             # define all move types
             move_s = [int(source_row[0]) + 1, int(source_col[0])]
@@ -111,7 +111,7 @@ class Soldier(Piece):
                     possible_destinations.append(move_sw)
 
         # Team Blue moves
-        if team == 'blue':
+        if team == 'b':
 
             # define all move types
             move_n = [int(source_row[0]) - 1, int(source_col[0])]
@@ -199,7 +199,7 @@ class General(Piece):
         palace = self.get_palace()
 
         # Team Red moves
-        if team == 'red':
+        if team == 'r':
 
             # define all move types
             move_n = [int(source_row[0]) - 1, int(source_col[0])]
@@ -233,7 +233,7 @@ class General(Piece):
                 possible_destinations.append(move_nw)
 
         # Team Red moves
-        if team == 'blue':
+        if team == 'b':
 
             # define all move types
             move_n = [int(source_row[0]) - 1, int(source_col[0])]
@@ -319,7 +319,7 @@ class Guard(Piece):
         palace = self.get_palace()
 
         # Team Red moves
-        if team == 'red':
+        if team == 'r':
 
             # define all move types
             move_n = [int(source_row[0]) - 1, int(source_col[0])]
@@ -354,7 +354,7 @@ class Guard(Piece):
                 possible_destinations.append(move_nw)
 
         # Team Red moves
-        if team == 'blue':
+        if team == 'b':
 
             # define all move types
             move_n = [int(source_row[0]) - 1, int(source_col[0])]
